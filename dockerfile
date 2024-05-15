@@ -17,6 +17,6 @@ WORKDIR /app
 COPY --from=builder /app/test .
 
 # Menambahkan environment variable
-ENV Environment_Name=Production
+ENV Environment_Name=Development
 
 CMD ["./test"]
