@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp
+    spec:
+      containers:
+      - name: testapp
+        image: myapp-image
+        ports:
+        - containerPort: 8080
+        env:
+          - name: Environment_Name
+            valueFrom:
+              configMapKeyRef:
+                name: test-config
+                key: Environment_Name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: testapp
