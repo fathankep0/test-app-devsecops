@@ -17,6 +17,6 @@ WORKDIR /app
 COPY --from=builder /app/test .
 
 # Menambahkan environment variable
-ENV Environment_Name=Development
+ENV Environment_Name=Poduction
 
 CMD ["./test"]
